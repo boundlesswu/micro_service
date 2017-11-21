@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.vorxsoft.ieye</groupId>
+    <artifactId>micro_service</artifactId>
+    <version>4.0.1.2</version>
+    <properties>
+
+
+    <protobuf.version>3.2.0</protobuf.version>
+    <grpc.version>1.4.0</grpc.version>
+    <!--<protobuf.version>3.0.0</protobuf.version>-->
+    <!--<grpc.version>1.0.2</grpc.version>-->
+    <netty.version>4.1.6.Final</netty.version>
+    <slf4j.version>1.7.21</slf4j.version>
+    <auto-service.version>1.0-rc3</auto-service.version>
+        <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.vorxsoft.ieye</groupId>
+            <artifactId>proto</artifactId>
+            <version>4.0.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>${auto-service.version}</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                        <!-- TODO <arg>-Werror</arg> -->
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <!--发布-->
+    <distributionManagement>
+        <repository>
+            <id>private-releases</id>
+            <name>private-releases</name>
+            <url>http://192.168.20.251:8081/nexus/content/repositories/releases/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>private-snapshots</id>
+            <name>private-snapshots</name>
+            <url>http://192.168.20.251:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
