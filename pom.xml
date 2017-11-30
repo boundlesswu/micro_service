@@ -74,13 +74,13 @@
     <!--发布-->
     <distributionManagement>
         <repository>
-            <id>private-releases</id>
+            <id>releases</id>
             <name>private-releases</name>
             <url>http://192.168.20.251:8081/nexus/content/repositories/releases/</url>
         </repository>
 
         <snapshotRepository>
-            <id>private-snapshots</id>
+            <id>snapshots</id>
             <name>private-snapshots</name>
             <url>http://192.168.20.251:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
