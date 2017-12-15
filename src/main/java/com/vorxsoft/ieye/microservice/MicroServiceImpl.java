@@ -2,6 +2,7 @@ package com.vorxsoft.ieye.microservice;
 
 import com.coreos.jetcd.*;
 import com.coreos.jetcd.data.ByteSequence;
+import com.coreos.jetcd.data.KeyValue;
 import com.coreos.jetcd.kv.DeleteResponse;
 import com.coreos.jetcd.kv.GetResponse;
 import com.coreos.jetcd.kv.PutResponse;
@@ -9,6 +10,7 @@ import com.coreos.jetcd.options.GetOption;
 import com.coreos.jetcd.options.PutOption;
 import com.coreos.jetcd.options.WatchOption;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.*;
@@ -195,6 +197,18 @@ public class MicroServiceImpl implements  MicroService {
       return null;
     else
       return response.getKvs();
+  }
+
+  @Override
+  public List<String> ResolveAllAddress(String name) throws Exception {
+    List<KeyValue> allKv = ResolveAll(name);
+    List<String> ret = new ArrayList<>();
+    for (int i = 0; i < allKv.size(); i++) {
+      String serviceAddress =  allKv.get(i).getKey().toStringUtf8();
+      int pos = serviceAddress.lastIndexOf("/");
+      if(pos >= 0 ) ret.add(serviceAddress.substring(pos+1));
+    }
+    return ret;
   }
 
   @Override
